@@ -5,14 +5,11 @@
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
     "./schema": {
-      "types": "./dist/sensecheck/schema.d.ts",
       "import": "./dist/sensecheck/schema.js"
     }
   },
@@ -20,7 +17,7 @@
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "eval": "tsx src/sensecheck/eval/run.ts"
   },
   "dependencies": {

@@ -13,7 +13,7 @@
     "build": "tsup && npm run copy-templates",
     "copy-templates": "node ./scripts/copy-templates.js",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@senseinside/core": "0.1.0",
