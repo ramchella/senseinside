@@ -1,0 +1,33 @@
+{
+  "name": "@senseinside/cli",
+  "version": "0.1.0",
+  "description": "SenseInside CLI: install, configure, and inspect the local identity governor for AI agents.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "sense-inside": "./dist/bin.js",
+    "senseinside": "./dist/bin.js"
+  },
+  "files": ["dist", "templates"],
+  "scripts": {
+    "build": "tsup && npm run copy-templates",
+    "copy-templates": "node ./scripts/copy-templates.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@senseinside/core": "0.1.0",
+    "@senseinside/hook": "0.1.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "prompts": "^2.4.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}

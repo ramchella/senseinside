@@ -1,0 +1,27 @@
+{
+  "name": "@senseinside/hook",
+  "version": "0.1.0",
+  "description": "SenseInside PreToolUse hook for Claude Code. Phase 1a: Observe Mode only.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/pretool.js",
+  "bin": {
+    "senseinside-pretool": "./dist/pretool.js"
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@senseinside/core": "0.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
