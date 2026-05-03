@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "description": "SenseInside PreToolUse hook for Claude Code. Phase 1a: Observe Mode only.",
   "license": "Apache-2.0",
+  "homepage": "https://senseinside.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senseinside/sense-inside.git",
+    "directory": "packages/hook"
+  },
+  "bugs": "https://github.com/senseinside/sense-inside/issues",
+  "keywords": ["claude-code", "hook", "ai", "agent", "governance", "senseinside"],
+  "publishConfig": { "access": "public" },
   "type": "module",
-  "main": "./dist/pretool.js",
+  "main": "./dist/pretool.cjs",
   "bin": {
-    "senseinside-pretool": "./dist/pretool.js"
+    "senseinside-pretool": "./dist/pretool.cjs"
   },
   "files": ["dist", "src"],
   "scripts": {

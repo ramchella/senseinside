@@ -1,8 +1,17 @@
 {
   "name": "@senseinside/cli",
   "version": "0.1.0",
-  "description": "SenseInside CLI: install, configure, and inspect the local identity governor for AI agents.",
+  "description": "SenseInside CLI: install, configure, and inspect the local identity governor for AI agents. Runs `npx @senseinside/cli init` to set up.",
   "license": "Apache-2.0",
+  "homepage": "https://senseinside.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senseinside/sense-inside.git",
+    "directory": "packages/cli"
+  },
+  "bugs": "https://github.com/senseinside/sense-inside/issues",
+  "keywords": ["ai", "agent", "governance", "identity", "claude-code", "anthropic", "cli"],
+  "publishConfig": { "access": "public" },
   "type": "module",
   "bin": {
     "sense-inside": "./dist/bin.js",

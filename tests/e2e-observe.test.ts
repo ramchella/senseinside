@@ -10,7 +10,7 @@ import { ActionLogEntrySchema } from "../packages/core/src/sensecheck/schema.js"
 const exec = promisify(execFile);
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, "..");
-const HOOK_BUNDLE = join(REPO, "packages", "hook", "dist", "pretool.js");
+const HOOK_BUNDLE = join(REPO, "packages", "hook", "dist", "pretool.cjs");
 
 let SANDBOX = "";
 let HOME = "";
@@ -21,6 +21,7 @@ beforeAll(async () => {
   HOME = join(SANDBOX, "home");
   await mkdir(join(HOME, ".senseinside", "bin"), { recursive: true });
   await mkdir(join(HOME, ".senseinside", "private-brain", "logs"), { recursive: true });
+  await mkdir(join(HOME, ".senseinside", "logs"), { recursive: true });
   await mkdir(join(HOME, ".senseinside", "private-brain", "identity"), { recursive: true });
   await mkdir(join(HOME, ".senseinside", "private-brain", "governor"), { recursive: true });
 
@@ -43,7 +44,7 @@ beforeAll(async () => {
     `---\ntier: 1\ntype: rules\nupdated: 2026-05-03\n---\n# Rules\n1. Never force-push to main.\n`,
   );
 
-  const hookDest = join(HOME, ".senseinside", "bin", "pretool.js");
+  const hookDest = join(HOME, ".senseinside", "bin", "pretool.cjs");
   await copyFile(HOOK_BUNDLE, hookDest);
   await chmod(hookDest, 0o755);
 
@@ -64,7 +65,7 @@ describe("hook end-to-end (Observe Mode)", () => {
       tool_input: { command: "echo hello" },
     });
 
-    const hookPath = join(HOME, ".senseinside", "bin", "pretool.js");
+    const hookPath = join(HOME, ".senseinside", "bin", "pretool.cjs");
     const { stdout, stderr } = await runHookWithStdin(hookPath, payload);
 
     expect(stdout).toBe("");
@@ -84,7 +85,7 @@ describe("hook end-to-end (Observe Mode)", () => {
   }, 30_000);
 
   it("exits 0 even on malformed stdin", async () => {
-    const hookPath = join(HOME, ".senseinside", "bin", "pretool.js");
+    const hookPath = join(HOME, ".senseinside", "bin", "pretool.cjs");
     const { stdout, stderr, code } = await runHookWithStdin(hookPath, "not json at all");
     expect(code).toBe(0);
     expect(stdout).toBe("");
@@ -92,7 +93,7 @@ describe("hook end-to-end (Observe Mode)", () => {
   });
 
   it("exits 0 even on empty stdin", async () => {
-    const hookPath = join(HOME, ".senseinside", "bin", "pretool.js");
+    const hookPath = join(HOME, ".senseinside", "bin", "pretool.cjs");
     const { code } = await runHookWithStdin(hookPath, "");
     expect(code).toBe(0);
   });

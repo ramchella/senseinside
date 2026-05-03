@@ -1,8 +1,17 @@
 {
   "name": "@senseinside/core",
   "version": "0.1.0",
-  "description": "SenseInside core: schemas, prompt, brain reader, LLM client.",
+  "description": "SenseInside core: schemas, prompt, brain reader, LLM client. Runtime identity governance for AI agents.",
   "license": "Apache-2.0",
+  "homepage": "https://senseinside.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senseinside/sense-inside.git",
+    "directory": "packages/core"
+  },
+  "bugs": "https://github.com/senseinside/sense-inside/issues",
+  "keywords": ["ai", "agent", "governance", "identity", "claude", "anthropic", "safety"],
+  "publishConfig": { "access": "public" },
   "type": "module",
   "main": "./dist/index.js",
   "exports": {

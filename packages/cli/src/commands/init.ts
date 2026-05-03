@@ -42,7 +42,7 @@ export async function initCommand(opts: InitOptions = {}): Promise<void> {
 
   await scaffoldVaults(archetype);
   await scaffoldProjectVault(cwd);
-  await installHookBundle();
+  const hookCopied = await installHookBundle();
   await writeConfig();
   await writeSubagent(cwd);
   const registered = await registerSettingsHook(cwd);
@@ -53,7 +53,11 @@ export async function initCommand(opts: InitOptions = {}): Promise<void> {
   log.section("Done");
   log.bullet(`User vault:       ${userVault()}`);
   log.bullet(`Project vault:    ${projectVault(cwd)}`);
-  log.bullet(`Hook installed:   ${userHookPath()}`);
+  log.bullet(
+    hookCopied
+      ? `Hook installed:   ${userHookPath()}`
+      : `Hook NOT installed (build @senseinside/hook first, then re-run init)`,
+  );
   log.bullet(`Subagent:         ${join(claudeAgentsDir(cwd), "sense-inside.md")}`);
   log.bullet(
     `Claude settings:  ${registered ? "PreToolUse hook registered" : "PreToolUse hook already present"}`,
@@ -144,19 +148,20 @@ async function scaffoldProjectVault(cwd: string): Promise<void> {
   log.ok(`Project-level overrides go in: ${root}`);
 }
 
-async function installHookBundle(): Promise<void> {
+async function installHookBundle(): Promise<boolean> {
   log.section("Installing hook bundle");
   await ensureDir(userBin());
   const src = bundledHookPath();
   if (!(await pathExists(src))) {
     log.warn(
-      `Hook bundle not found at ${src}. Did you install @senseinside/hook? Falling back to npm-resolved binary.`,
+      `Hook bundle not found at ${src}.\n    Run 'npm run build' from the SenseInside repo root, then re-run init.`,
     );
-    return;
+    return false;
   }
   await copyFile(src, userHookPath());
   await chmod(userHookPath(), 0o755);
   log.ok(`Hook bundle copied to ${userHookPath()}`);
+  return true;
 }
 
 async function writeConfig(): Promise<void> {

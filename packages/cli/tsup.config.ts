@@ -8,7 +8,6 @@ export default defineConfig({
   sourcemap: false,
   splitting: false,
   bundle: true,
-  noExternal: [/.*/],
   target: "node20",
   banner: { js: "#!/usr/bin/env node" },
 });

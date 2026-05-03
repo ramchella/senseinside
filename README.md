@@ -4,7 +4,7 @@
 
 A local, open-source identity and governance layer for AI agents. Phase 1 ships on Anthropic's Claude Code via a subagent + `PreToolUse` hook, in **Observe Mode** — watch what your agent is doing and what a governor *would* have done, before turning on enforcement.
 
-[**senseinside.ai**](https://senseinside.ai) · [Concept](docs/concept.md) · [Install](docs/install.md) · [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) · [FAQ](docs/faq.md)
+[**senseinside.ai**](https://senseinside.ai) · [Concept](docs/concept.md) · [Install](docs/install.md) · [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) · [FAQ](docs/faq.md) · [**Zero-to-Hero Onboarding**](docs/onboarding.md)
 
 ## Install
 
